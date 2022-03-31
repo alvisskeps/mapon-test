@@ -12,8 +12,8 @@
 <script>
     function initMap() {
         const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 8,
-            center: { lat:41.38879, lng: 2.15899 }, //coords of Barcelona
+            zoom: 6,
+            center: { lat: 56.9496, lng: 24.1052 },
         });
 
         const responseStatus = <?= $this->params['success'] ?>;

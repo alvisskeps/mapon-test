@@ -28,6 +28,7 @@ $router
     ->get('/login', [\App\Controllers\UserController::class, 'index'])
     ->post('/login', [\App\Controllers\UserController::class, 'login'])
     ->post('/logout', [\App\Controllers\UserController::class, 'logout'])
+    ->get('/routes', [\App\Controllers\RouteController::class, 'index'])
     ->post('/routes', [\App\Controllers\RouteController::class, 'routes']);
 
 (new BaseApp(

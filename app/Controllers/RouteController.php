@@ -27,7 +27,7 @@ class RouteController
         $response = [
             'success' => 0,
             'message' => 'message',
-            'result' => [],
+            'result' => json_encode([]),
         ];
 
         try {
@@ -39,16 +39,25 @@ class RouteController
             $unit = $this->getUnit();
             $unitId = (string)$unit['unit_id'] ?? '';
 
-            if (!$dateFrom || $dateTill || $timeFrom || $timeTill || $unitId) {
-                return View::make('index', $response)->render();
+            if (!$dateFrom || !$dateTill || !$timeFrom || !$timeTill || !$unitId) {
+                header ('HTTP/1.1 301 Moved Permanently');
+                header('Location: /');
             }
 
             $routeData = $this->routeService->getRoutesByUnitId($dateFrom, $timeFrom, $dateTill, $timeTill, $unitId);
-            $response['success'] = 1;
-            $response['result'] = json_encode($routeData);
+
+            if (!$routeData) {
+                $response['success'] = 0;
+                $response['message'] = json_encode('Route not found');
+
+            } else {
+                $response['success'] = 1;
+                $response['result'] = json_encode($routeData);
+            }
+
         } catch (ClientExceptionInterface $e) {
             $response['success'] = 0;
-            $response['message'] = 'API Error! Code: ' . $e->getCode() . ' Message: ' . $e->getMessage();
+            $response['message'] = json_encode('API Error! Code: ' . $e->getCode() . ' Message: ' . $e->getMessage());
         }
 
         return View::make('routes/index', $response)->render();

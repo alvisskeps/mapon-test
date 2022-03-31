@@ -6,6 +6,7 @@ namespace App\Services;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Psr\Http\Client\ClientExceptionInterface;
 use stdClass;
 
 class RouteService
@@ -22,7 +23,7 @@ class RouteService
     }
 
     /**
-     * @throws GuzzleException
+     * @throws ClientExceptionInterface
      */
     public function getRoutesByUnitId(string $dateFrom, string $timeFrom, string $dateTill, string $timeTill, string $unitId): array
     {
@@ -33,7 +34,7 @@ class RouteService
                 'from' => $formattedTime->from,
                 'till' => $formattedTime->till,
                 'unit_id' => $unitId,
-                'include' => ['polyline']
+                'include' => ['polyline'],
             ],
         ]);
 

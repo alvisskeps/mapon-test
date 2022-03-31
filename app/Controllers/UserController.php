@@ -14,7 +14,8 @@ class UserController
     {
         return View::make('auth/login')->render();
     }
-    public function login(): string
+
+    public function login(): void
     {
         $session = Session::getInstance();
         $email = $_POST['email'] ?? '';
@@ -25,20 +26,20 @@ class UserController
         $userExists = $user->getUser($email, $password);
 
         if (!$userExists) {
-            return View::make('auth/login', [
-                'message' => 'User does not exist',
-            ])->render();
+            header ('HTTP/1.1 301 Moved Permanently');
+            header('Location: /');
         }
 
         $session->set('email', $email);
 
-        return View::make('index', )->render();
+        header ('HTTP/1.1 301 Moved Permanently');
+        header('Location: /');
     }
 
     public function logout(): string
     {
         session_destroy();
-
-        return View::make('auth/login')->render();
+        header ('HTTP/1.1 301 Moved Permanently');
+        header('Location: /');
     }
 }
