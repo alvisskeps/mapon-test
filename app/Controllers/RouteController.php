@@ -40,7 +40,7 @@ class RouteController
             $unitId = (string)$unit['unit_id'] ?? '';
 
             if (!$dateFrom || !$dateTill || !$timeFrom || !$timeTill || !$unitId) {
-                header ('HTTP/1.1 301 Moved Permanently');
+                header('HTTP/1.1 301 Moved Permanently');
                 header('Location: /');
             }
 
