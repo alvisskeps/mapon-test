@@ -32,7 +32,7 @@ class UserController
 
         $session->set('email', $email);
 
-        return View::make('/', )->render();
+        return View::make('index', )->render();
     }
 
     public function logout(): string

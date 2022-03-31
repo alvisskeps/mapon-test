@@ -5,6 +5,8 @@
     }
   },
   "require": {
-    "vlucas/phpdotenv": "^5.4"
+    "vlucas/phpdotenv": "^5.4",
+    "mapon-com/client-api-php-sdk": "^1.0",
+    "guzzlehttp/guzzle": "^7.0"
   }
 }
