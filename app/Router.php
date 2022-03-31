@@ -22,6 +22,11 @@ class Router
         return $this->register('get', $route, $action);
     }
 
+    public function post(string $route, callable|array $action): self
+    {
+        return $this->register('post', $route, $action);
+    }
+
     /**
      * @throws RouteNotFoundException
      */

@@ -9,5 +9,8 @@
 </head>
 <body>
     TEST
+    <form action="/logout" method="post">
+        <input type="submit" name="logout" value="Logout" />
+    </form>
 </body>
 </html>
